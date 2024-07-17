@@ -45,6 +45,7 @@ blogRouter.post('/', async (c) => {
         message: "Inputs are incorrect.",
       });
     }
+
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
@@ -58,10 +59,11 @@ blogRouter.post('/', async (c) => {
                 // published: body.published
             }
         });
-        console.log(blog);
+        // console.log(blog);
 
         return c.json({
             message: " Blog created successfully",
+            id: blog.id
         })
     } catch (error) {
         console.log(error);
@@ -93,7 +95,7 @@ blogRouter.put('/', async (c) => {
                 // published: body.published
             }
         });
-        console.log(blog);
+        // console.log(blog);
 
         return c.json({
             message: " Blog updated successfully",
@@ -156,7 +158,7 @@ blogRouter.get('/bulk', async (c) => {
                 }
             }
         });
-        console.log(blog);
+        // console.log(blog);
 
         return c.json({
             message: " Blog retrieved successfully",
